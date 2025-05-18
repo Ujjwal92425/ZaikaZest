@@ -110,6 +110,25 @@
   background-color: #e5533d;
 }
 
+.our-menu{
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px #8e7e7b;
+}
+.starter{
+  display: flex;
+
+}
+.starter h2{
+
+}
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .nav-links {
