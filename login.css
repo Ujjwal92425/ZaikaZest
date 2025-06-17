@@ -52,6 +52,35 @@
     background: black;
     transition: all 0.3s ease;
   }
+
+  .headinglogin{
+    padding: 1em;
+  }
+  .img-box {
+    height:70%;
+    width: 40%;
+    padding: 1px; 
+    border: 1px solid black;
+   }
+
+   .form-box {
+    position: relative;
+    margin-left: 50em;
+    margin-top: 40em;
+   }
+   form{
+    position: relative;
+    
+   }
+   input {
+    padding: 1em;
+    margin: 0.5em;
+    
+   }
+
+
+
+
   @media (max-width: 768px) {
     .nav-links {
       display: none;
