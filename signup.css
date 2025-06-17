@@ -20,6 +20,10 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
 .nav-links {
   display: flex;
   list-style: none;
