@@ -6,3 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.classList.toggle("active");
   });
 });
+
+const button = document.querySelector(".btn");
+button.addEventListener("click", (e) => {
+  e.preventDefault(); 
+  alert("Registered Successfully");
+});
