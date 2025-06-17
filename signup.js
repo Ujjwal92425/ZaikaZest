@@ -12,3 +12,4 @@ button.addEventListener("click", (e) => {
   e.preventDefault(); 
   alert("Registered Successfully");
 });
+
