@@ -100,3 +100,27 @@ gsap.from(".footer", {
   duration: .8,
   ease: "power2.out"
 });
+
+//cart
+document.querySelectorAll("#buy").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const card = this.closest(".card");
+      const name = card.querySelector("h3").innerText;
+      const priceText = card.querySelector("span").innerText;
+      const price = parseFloat(priceText.replace("Rs.", "").replace(".00", "").trim());
+      const image = card.querySelector("img").getAttribute("src");
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+      window.location.href = "cart.html";
+    });
+  });

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Cart.css" />
+    <title>Your Cart</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="icon">Zaika Zest</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home </a></li>
+        <li><a href="#">Menu </a></li>
+        <li><a href="Cart.html">Cart</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+    <h2 id="total"></h2>
+
+    <div class="btn-wrapper">
+      <button id="btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const cartContainer = document.getElementById("cart-items");
+      const totalDiv = document.getElementById("total");
+
+      function renderCart() {
+        cartContainer.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price * item.quantity;
+
+          const div = document.createElement("div");
+          div.className = "item";
+          div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>Price: ₹${item.price}</p>
+            <p>
+              Quantity:
+              <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+              ${item.quantity}
+              <button class="quantity-btn" onclick="increaseQuantity(${index})">+</button>
+            </p>
+            <button onclick="removeItem(${index})">Remove</button>
+          </div>
+        `;
+          cartContainer.appendChild(div);
+        });
+
+        totalDiv.innerText = "Total: ₹" + total;
+      }
+
+      function increaseQuantity(index) {
+        cart[index].quantity += 1;
+        updateCart();
+      }
+
+      function decreaseQuantity(index) {
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+        } else {
+          cart.splice(index, 1);
+        }
+        updateCart();
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        updateCart();
+      }
+
+      function updateCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          alert("Cart is empty!");
+          return;
+        }
+        alert("Order placed successfully!");
+        localStorage.removeItem("cart");
+        window.location.href = "index.html";
+      }
+
+      renderCart();
+    </script>
+  </body>
+</html>
